@@ -3,4 +3,4 @@ import Vue from 'vue'
 
 export function install(vue: typeof Vue): void
 
-export interface jComponentVue {}
+declare module 'j-component-vue' {}

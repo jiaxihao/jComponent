@@ -1,0 +1,19 @@
+# 忽略目录
+examples/
+packages/
+public/
+
+# 忽略指定文件
+vue.config.js
+babel.config.js
+*.map
+.editorconfig
+.env.*
+.eslintignore
+.eslintrc.js
+.gitignore
+.stylelintignore
+.stylelintrc.js
+.travis.yml
+.yarnrc
+jsconfig.json
