@@ -66,11 +66,7 @@
     "rules": {}
   },
   "files": [
-    "dist/*",
-    "src/*",
-    "public/*",
-    "*.json",
-    "*.js"
+    "dist/*"
   ],
   "browserslist": [
     "> 1%",
