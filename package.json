@@ -9,8 +9,7 @@
     "build:dev": "vue-cli-service build --mode development",
     "build:prod": "vue-cli-service build --mode production",
     "build-bundle": "vue-cli-service build --target lib --name jcomponent ./src/index.js",
-    "lint": "eslint --fix --ext .js,.vue src example && stylelint --fix .vue .scss .css src",
-    "publish": "npm publish --access=public"
+    "lint": "eslint --fix --ext .js,.vue src example && stylelint --fix .vue .scss .css src"
   },
   "dependencies": {},
   "devDependencies": {
@@ -66,7 +65,8 @@
     "rules": {}
   },
   "files": [
-    "dist/*"
+    "dist/*",
+    "index.js"
   ],
   "browserslist": [
     "> 1%",
