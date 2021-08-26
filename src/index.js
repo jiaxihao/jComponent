@@ -11,9 +11,9 @@ const components = [
 const install = function (Vue) {
 	components.forEach(component => {
 		Vue.component(component.name, component)
-
-		Vue.use(Global)
 	})
+
+	Vue.use(Global)
 }
 
 export default {

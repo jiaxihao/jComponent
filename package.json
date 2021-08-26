@@ -3,13 +3,13 @@
   "version": "0.0.7",
   "author": "jiaxihao_2019@qq.com",
   "private": false,
-  "main": "./dist/jcomponent.common.js",
+  "main": "dist/jcomponentvue.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build:dev": "vue-cli-service build --mode development",
     "build:prod": "vue-cli-service build --mode production",
     "build-bundle": "vue-cli-service build --target lib --name jcomponentvue ./src/index.js",
-    "lint": "eslint --fix --ext .js,.vue src example && stylelint --fix .vue .scss .css src"
+    "lint": "eslint --fix --ext .js,.vue src example && stylelint --fix .vue .scss .css src example"
   },
   "dependencies": {},
   "devDependencies": {
@@ -49,20 +49,6 @@
     "stylelint-scss": "^3.20.1",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
   },
   "files": [
     "dist/*",
