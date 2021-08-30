@@ -65,10 +65,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .j-button {
 	padding: 7px 14px;
-	border: 1px solid #ddd;
+	border: 1px solid;
 	border-radius: 3px;
 	outline: none;
 	font-size: 16px;
@@ -76,6 +76,8 @@ export default {
 	background: #fff;
 	transition-duration: 0.1s;
 	cursor: pointer;
+
+	@include theme_brd_color('primary');
 }
 
 /** sizes start */

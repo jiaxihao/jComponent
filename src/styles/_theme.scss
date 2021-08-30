@@ -1,0 +1,13 @@
+$title_color: #282828;
+$content_color: #727272;
+
+$default:(
+	primary: #36cca5,
+	warn: #ffbc36,
+	danger: #f4142f,
+	info: #9fa0a0,
+);
+
+$themes: (
+	'default': $default
+);
