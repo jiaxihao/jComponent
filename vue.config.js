@@ -1,6 +1,15 @@
+'use strict'
+const path = require('path')
+
+function resolve (dir) {
+	return path.join(__dirname, dir)
+}
+
 module.exports = {
 	chainWebpack: config => {
 		config.entry('app').clear().add('./example/main.js')
+
+		config.resolve.alias.set('@', resolve('src'))
 	},
 	css: {
 		loaderOptions: {

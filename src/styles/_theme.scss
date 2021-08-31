@@ -2,10 +2,25 @@ $title_color: #282828;
 $content_color: #727272;
 
 $default:(
+	default-hover: #e2fff7,
+	default-active: #73e4c6,
 	primary: #36cca5,
+	primary-hover: #5addba,
+	primary-active: #33c49d,
 	warn: #ffbc36,
+	warn-hover: #ffce6d,
+	warn-active: #f3b435,
 	danger: #f4142f,
+	danger-hover: #f5495d,
+	danger-active: #e2132c,
 	info: #9fa0a0,
+	info-hover: #b6b6b6,
+	info-active: #8f8f8f,
+	success: #3fbd09,
+	success-hover: #83cf62,
+	success-active: #57973c,
+	simple: #fff,
+	button-text: #9fa0a0
 );
 
 $themes: (
