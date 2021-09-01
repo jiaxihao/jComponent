@@ -1,11 +1,12 @@
 <template>
 	<div class="example">
 		<div class="row">
-			<j-button size="mini" @click="handleClick">jiaxihao</j-button>
-			<j-button size="small" @click="handleClick">jiaxihao</j-button>
-			<j-button @click="handleClick">jiaxihao</j-button>
-			<j-button size="large" @click="handleClick">jiaxihao</j-button>
+			<j-button size="mini" @click="handleClick">超小按钮</j-button>
+			<j-button size="small" @click="handleClick">小型按钮</j-button>
+			<j-button @click="handleClick">默认按钮</j-button>
+			<j-button size="large" @click="handleClick">大型按钮</j-button>
 		</div>
+
 		<div class="row">
 			<j-button @click="handleClick">默认按钮</j-button>
 			<j-button type="primary" @click="handleClick">主题按钮</j-button>
@@ -14,6 +15,7 @@
 			<j-button type="danger" @click="handleClick">危险按钮</j-button>
 			<j-button type="info" @click="handleClick">信息按钮</j-button>
 		</div>
+
 		<div class="row">
 			<j-button circle @click="handleClick">默认按钮</j-button>
 			<j-button circle type="primary" @click="handleClick">主题按钮</j-button>
@@ -21,6 +23,46 @@
 			<j-button circle type="warn" @click="handleClick">警告按钮</j-button>
 			<j-button circle type="danger" @click="handleClick">危险按钮</j-button>
 			<j-button circle type="info" @click="handleClick">信息按钮</j-button>
+		</div>
+
+		<div class="row">
+			<j-button disabled @click="handleClick">默认按钮</j-button>
+			<j-button disabled type="primary" @click="handleClick">主题按钮</j-button>
+			<j-button disabled type="success" @click="handleClick">成功按钮</j-button>
+			<j-button disabled type="warn" @click="handleClick">警告按钮</j-button>
+			<j-button disabled type="danger" @click="handleClick">危险按钮</j-button>
+			<j-button disabled type="info" @click="handleClick">信息按钮</j-button>
+		</div>
+
+		<div class="row">
+			<j-button-group>
+				<j-button @click="handleClick">默认按钮</j-button>
+				<j-button disabled type="primary" @click="handleClick">主题按钮</j-button>
+				<j-button type="primary" @click="handleClick">主题按钮</j-button>
+				<j-button disabled type="primary" @click="handleClick">主题按钮</j-button>
+				<j-button @click="handleClick">默认按钮</j-button>
+			</j-button-group>
+		</div>
+
+		<div class="row">
+			<j-button type="text" @click="handleClick">文字按钮</j-button>
+			<j-button disabled type="text" @click="handleClick">主题按钮</j-button>
+		</div>
+
+		<div class="row">
+			<j-link href="http://www.baidu.com" target="_blank">默认链接</j-link>
+			<j-link type="primary">主题链接</j-link>
+			<j-link type="success">成功链接</j-link>
+			<j-link type="warn">警告链接</j-link>
+			<j-link type="danger">危险链接</j-link>
+		</div>
+
+		<div class="row">
+			<j-link disabled href="http://www.baidu.com" target="_blank">默认链接</j-link>
+			<j-link disabled type="primary">主题链接</j-link>
+			<j-link disabled type="success">成功链接</j-link>
+			<j-link disabled type="warn">警告链接</j-link>
+			<j-link disabled type="danger">危险链接</j-link>
 		</div>
 	</div>
 </template>
@@ -32,7 +74,7 @@ export default {
 	},
 	methods: {
 		handleClick (e) {
-			// console.log(e)
+			console.log(e)
 		}
 	}
 }

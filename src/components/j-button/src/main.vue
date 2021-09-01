@@ -2,9 +2,10 @@
 	<button
 		class="j-button"
 		:class="classArray"
+		:disabled="disabled"
 		@click="handleClick"
 	>
-		<span><slot></slot></span>
+		<span v-if="!icon && !round"><slot></slot></span>
 	</button>
 </template>
 
@@ -23,6 +24,18 @@ export default {
 		circle: {
 			type: Boolean,
 			default: false
+		},
+		round: {
+			type: Boolean,
+			default: false
+		},
+		disabled: {
+			type: Boolean,
+			default: false
+		},
+		icon: {
+			type: String,
+			default: ''
 		}
 	},
 	data () {
@@ -37,11 +50,8 @@ export default {
 		}
 	},
 	computed: {
-		status () {
-			return this.active ? 'active' : this.hover ? 'hover' : 'default'
-		},
 		classArray () {
-			const allowTypes = ['primary', 'success', 'warn', 'danger', 'info']
+			const allowTypes = ['primary', 'success', 'warn', 'danger', 'info', 'text']
 			const allowSizes = ['mini', 'small', 'medium', 'large']
 
 			const classArray = []
@@ -66,6 +76,14 @@ export default {
 			if (this.circle) {
 				const circle = `is-circle`
 				classArray.push(circle)
+			} else if (this.round) {
+				const round = `is-round`
+				classArray.push(round)
+			}
+
+			if (this.disabled) {
+				const disabled = 'is-disabled'
+				classArray.push(disabled)
 			}
 
 			return classArray
@@ -76,6 +94,7 @@ export default {
 
 <style lang="scss">
 .j-button {
+	box-sizing: border-box;
 	padding: 7px 14px;
 	border: 1px solid;
 	border-radius: 4px;
@@ -84,19 +103,41 @@ export default {
 	transition-duration: 0.1s;
 	cursor: pointer;
 
+	&.is-circle {
+		border-radius: 20px;
+	}
+
+	&.is-round {
+		padding: 14px;
+
+		@extend .is-circle;
+	}
+
 	&-mini {
 		padding: 5px 10px;
 		font-size: 12px;
+
+		&.is-round {
+			padding: 10px;
+		}
 	}
 
 	&-small {
 		padding: 6px 12px;
 		font-size: 12px;
+
+		&.is-round {
+			padding: 12px;
+		}
 	}
 
 	&-large {
 		padding: 8px 16px;
 		font-size: 16px;
+
+		&.is-round {
+			padding: 16px;
+		}
 	}
 
 	& + & {
@@ -114,14 +155,10 @@ export default {
 	@include theme_bg_color('simple');
 }
 
-.is-circle {
-	border-radius: 20px;
-}
-
 /** types start */
 
-.j-button:hover,
-.j-button:focus {
+.j-button:hover:not(.is-disabled):not(.j-button--text),
+.j-button:focus:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('primary-hover');
 
@@ -130,7 +167,7 @@ export default {
 	@include theme_brd_color('primary-hover');
 }
 
-.j-button:active {
+.j-button:active:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('primary-active');
 
@@ -146,15 +183,15 @@ export default {
 	@include theme_brd_color('primary');
 }
 
-.j-button--primary:hover,
-.j-button--primary:focus {
+.j-button--primary:hover:not(.is-disabled):not(.j-button--text),
+.j-button--primary:focus:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('simple');
 
 	@include theme_bg_color('primary-hover');
 }
 
-.j-button--primary:active {
+.j-button--primary:active:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('simple');
 
@@ -170,8 +207,8 @@ export default {
 	@include theme_brd_color('warn');
 }
 
-.j-button--warn:hover,
-.j-button--warn:focus {
+.j-button--warn:hover:not(.is-disabled):not(.j-button--text),
+.j-button--warn:focus:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('simple');
 
@@ -180,7 +217,7 @@ export default {
 	@include theme_brd_color('warn-hover');
 }
 
-.j-button--warn:active {
+.j-button--warn:active:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('simple');
 
@@ -198,8 +235,8 @@ export default {
 	@include theme_brd_color('danger');
 }
 
-.j-button--danger:hover,
-.j-button--danger:focus {
+.j-button--danger:hover:not(.is-disabled):not(.j-button--text),
+.j-button--danger:focus:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('simple');
 
@@ -208,7 +245,7 @@ export default {
 	@include theme_brd_color('danger-hover');
 }
 
-.j-button--danger:active {
+.j-button--danger:active:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('simple');
 
@@ -226,8 +263,8 @@ export default {
 	@include theme_brd_color('info');
 }
 
-.j-button--info:hover,
-.j-button--info:focus {
+.j-button--info:hover:not(.is-disabled):not(.j-button--text),
+.j-button--info:focus:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('simple');
 
@@ -236,7 +273,7 @@ export default {
 	@include theme_brd_color('info-hover');
 }
 
-.j-button--info:active {
+.j-button--info:active:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('simple');
 
@@ -254,8 +291,8 @@ export default {
 	@include theme_brd_color('success');
 }
 
-.j-button--success:hover,
-.j-button--success:focus {
+.j-button--success:hover:not(.is-disabled):not(.j-button--text),
+.j-button--success:focus:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('simple');
 
@@ -264,7 +301,7 @@ export default {
 	@include theme_brd_color('success-hover');
 }
 
-.j-button--success:active {
+.j-button--success:active:not(.is-disabled):not(.j-button--text) {
 
 	@include theme_color('simple');
 
@@ -273,5 +310,83 @@ export default {
 	@include theme_brd_color('success-active');
 }
 
+.j-button--text {
+	padding-right: 0;
+	padding-left: 0;
+	border: none;
+
+	@include theme_color('primary');
+}
+
+.j-button--text:hover:not(.is-disabled):not(.j-button--text),
+.j-button--text:focus:not(.is-disabled):not(.j-button--text) {
+
+	@include theme_color('primary-hover');
+}
+
+.j-button--text:active:not(.is-disabled):not(.j-button--text) {
+
+	@include theme_color('primary-active');
+}
+
 /** types end */
+
+/** disabled start */
+
+.j-button.is-disabled {
+	cursor: not-allowed;
+
+	@include theme_color('button-text-disabled');
+
+	@include theme_brd_color('primary-disabled');
+
+	@include theme_bg_color('simple');
+}
+
+.j-button--primary.is-disabled {
+
+	@include theme_color('simple-disabled');
+
+	@include theme_brd_color('primary-disabled');
+
+	@include theme_bg_color('primary-disabled');
+}
+
+.j-button--success.is-disabled {
+
+	@include theme_color('simple-disabled');
+
+	@include theme_brd_color('success-disabled');
+
+	@include theme_bg_color('success-disabled');
+}
+
+.j-button--warn.is-disabled {
+
+	@include theme_color('simple-disabled');
+
+	@include theme_brd_color('warn-disabled');
+
+	@include theme_bg_color('warn-disabled');
+}
+
+.j-button--danger.is-disabled {
+
+	@include theme_color('simple-disabled');
+
+	@include theme_brd_color('danger-disabled');
+
+	@include theme_bg_color('danger-disabled');
+}
+
+.j-button--info.is-disabled {
+
+	@include theme_color('simple-disabled');
+
+	@include theme_brd_color('info-disabled');
+
+	@include theme_bg_color('info-disabled');
+}
+
+/** disabled end */
 </style>

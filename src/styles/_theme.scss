@@ -7,20 +7,27 @@ $default:(
 	primary: #36cca5,
 	primary-hover: #5addba,
 	primary-active: #33c49d,
+	primary-disabled: #8dd8c4,
 	warn: #ffbc36,
 	warn-hover: #ffce6d,
 	warn-active: #f3b435,
+	warn-disabled: #f0c46d,
 	danger: #f4142f,
 	danger-hover: #f5495d,
 	danger-active: #e2132c,
+	danger-disabled: #db5b6a,
 	info: #9fa0a0,
 	info-hover: #b6b6b6,
 	info-active: #8f8f8f,
+	info-disabled: #bebebe,
 	success: #3fbd09,
 	success-hover: #83cf62,
 	success-active: #57973c,
+	success-disabled: #739763,
 	simple: #fff,
-	button-text: #9fa0a0
+	simple-disabled: #f1f1f1,
+	button-text: #9fa0a0,
+	button-text-disabled: #d1d1d1
 );
 
 $themes: (

@@ -19,7 +19,7 @@ const error = function (msg) {
 }
 
 const useTheme = function (themeName = 'default') {
-	console.log('use theme ', themeName)
+	info(`use theme ${themeName}`)
 	document.body.setAttribute('data-theme', themeName)
 }
 

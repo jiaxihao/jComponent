@@ -62,10 +62,20 @@
 
 // 边框颜色
 
-@mixin theme_brd_color ($key) {
+@mixin theme_brd_color ($key, $pos: null) {
 
-	@include themeify {
-		border-color: themed($key);
+	@if ($pos) {
+
+		@include themeify {
+			border-#{$pos}-color: themed($key);
+		}
+	}
+
+	@else {
+
+		@include themeify {
+			border-color: themed($key);
+		}
 	}
 }
 
