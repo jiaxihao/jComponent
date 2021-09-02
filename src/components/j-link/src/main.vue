@@ -32,15 +32,15 @@ export default {
 	},
 	data () {
 		return {
-			innerHref: ''
+			innerHref: 'javascript:void(0)'
 		}
 	},
 	mounted () {
-		if (!this.disabled) this.innerHref = this.href
+		if (!this.disabled && this.href) this.innerHref = this.href
 	},
 	methods: {
 		handleClick () {
-			if (!this.href) return
+			if (!this.href || this.disabled) return
 			if (this.target === '_blank') {
 				popUrl(this.href)
 			} else {

@@ -64,17 +64,53 @@
 			<j-link disabled type="warn">警告链接</j-link>
 			<j-link disabled type="danger">危险链接</j-link>
 		</div>
+
+		<div class="row">
+			<j-radio v-model="radio.radio1" label="1">备选项</j-radio>
+			<j-radio v-model="radio.radio1" label="2">备选项</j-radio>
+		</div>
+
+		<div class="row">
+			<j-radio v-model="radio.radio2" disabled label="1">备选项</j-radio>
+			<j-radio v-model="radio.radio2" label="2">备选项</j-radio>
+			<j-radio v-model="radio.radio2" label="3">备选项</j-radio>
+		</div>
+
+		<div class="row">
+			<j-radio-group v-model="radio.radio3" disabled>
+				<j-radio label="1">备选项</j-radio>
+				<j-radio label="2">备选项</j-radio>
+				<j-radio label="3">备选项</j-radio>
+			</j-radio-group>
+		</div>
 	</div>
 </template>
 
 <script>
 export default {
+	data () {
+		return {
+			radio: {
+				radio1: '1',
+				radio2: '1',
+				radio3: '1'
+			}
+		}
+	},
 	created () {
 		this.$useTheme('default')
 	},
 	methods: {
 		handleClick (e) {
 			console.log(e)
+		}
+	},
+	watch: {
+		radio: {
+			handler (newVal) {
+				console.log(newVal)
+			},
+			deep: true
 		}
 	}
 }

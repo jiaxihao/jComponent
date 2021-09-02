@@ -318,13 +318,13 @@ export default {
 	@include theme_color('primary');
 }
 
-.j-button--text:hover:not(.is-disabled):not(.j-button--text),
-.j-button--text:focus:not(.is-disabled):not(.j-button--text) {
+.j-button--text:hover:not(.is-disabled),
+.j-button--text:focus:not(.is-disabled) {
 
 	@include theme_color('primary-hover');
 }
 
-.j-button--text:active:not(.is-disabled):not(.j-button--text) {
+.j-button--text:active:not(.is-disabled) {
 
 	@include theme_color('primary-active');
 }
