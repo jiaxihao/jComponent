@@ -7,7 +7,7 @@ export default {
 			type: [String, Number, Boolean],
 			default: ''
 		},
-		disabled: {
+		disabled: { // overwrite children props
 			type: Boolean,
 			default: false
 		}

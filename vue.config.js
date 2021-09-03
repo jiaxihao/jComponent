@@ -6,6 +6,10 @@ function resolve (dir) {
 }
 
 module.exports = {
+	devServer: {
+		port: process.env.port || process.env.npm_config_port || 3000,
+		open: false
+	},
 	chainWebpack: config => {
 		config.entry('app').clear().add('./example/main.js')
 
