@@ -17,6 +17,15 @@
 		</div>
 
 		<div class="row">
+			<j-button round icon="j-icon-wodefankui" @click="handleClick"></j-button>
+			<j-button round icon="j-icon-zhengque" type="primary" @click="handleClick">主题按钮</j-button>
+			<j-button round icon="j-icon-zhengque" type="success" @click="handleClick">成功按钮</j-button>
+			<j-button round icon="j-icon-cuowu" type="warn" @click="handleClick">警告按钮</j-button>
+			<j-button round icon="j-icon-cuowu" type="danger" @click="handleClick">危险按钮</j-button>
+			<j-button round icon="j-icon-zhengque" type="info" @click="handleClick">信息按钮</j-button>
+		</div>
+
+		<div class="row">
 			<j-button circle @click="handleClick">默认按钮</j-button>
 			<j-button circle type="primary" @click="handleClick">主题按钮</j-button>
 			<j-button circle type="success" @click="handleClick">成功按钮</j-button>
@@ -83,6 +92,18 @@
 				<j-radio label="3">备选项</j-radio>
 			</j-radio-group>
 		</div>
+
+		<!-- <div class="row">
+			<j-checkbox v-model="checkbox.checkbox1" true-label="备选项1">备选项1</j-checkbox>
+			<j-checkbox v-model="checkbox.checkbox1" true-label="备选项2">备选项2</j-checkbox>
+			<j-checkbox v-model="checkbox.checkbox1" true-label="备选项3">备选项3</j-checkbox>
+		</div> -->
+
+		<div class="row">
+			<j-checkbox v-model="checkbox.checkbox2" class="j-icon-zhengque" true-label="备选项1">备选项1</j-checkbox>
+			<j-checkbox v-model="checkbox.checkbox2" true-label="备选项2">备选项2</j-checkbox>
+			<j-checkbox v-model="checkbox.checkbox2" true-label="备选项3">备选项3</j-checkbox>
+		</div>
 	</div>
 </template>
 
@@ -94,6 +115,11 @@ export default {
 				radio1: '1',
 				radio2: '1',
 				radio3: '1'
+			},
+			checkbox: {
+				checkbox1: '备选项1',
+				checkbox2: ['备选项2', '备选项3'],
+				checkbox3: '3'
 			}
 		}
 	},
@@ -107,6 +133,12 @@ export default {
 	},
 	watch: {
 		radio: {
+			handler (newVal) {
+				console.log(newVal)
+			},
+			deep: true
+		},
+		checkbox: {
 			handler (newVal) {
 				console.log(newVal)
 			},

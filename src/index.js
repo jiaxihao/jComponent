@@ -5,6 +5,9 @@ import JButtonGroup from './components/j-button-group'
 import JLink from './components/j-link'
 import JRadio from './components/j-radio'
 import JRadioGroup from './components/j-radio-group'
+import JCheckbox from './components/j-chcekbox'
+
+import './iconfont/iconfont.css'
 
 import Global from './utils/global'
 
@@ -13,7 +16,8 @@ const components = [
 	JButtonGroup,
 	JLink,
 	JRadio,
-	JRadioGroup
+	JRadioGroup,
+	JCheckbox
 ]
 
 const install = function (Vue) {

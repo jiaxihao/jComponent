@@ -1,8 +1,8 @@
 <template>
-	<label class="j-radio" :class="classArray">
-		<span class="j-radio-stone">
-			<span class="j-radio-stone-inner"></span>
-			<input type="radio" :name="name" :disabled="disabled" :checked="checked" @change="handleChange" />
+	<label class="j-checkbox" :class="classArray">
+		<span class="j-checkbox-stone">
+			<span class="j-checkbox-stone-inner"></span>
+			<input type="checkbox" :name="name" :value="value" :checked="innerChecked" @change="handleChange" />
 		</span>
 		<span><slot></slot></span>
 	</label>
@@ -10,14 +10,22 @@
 
 <script>
 export default {
-	name: 'JRadio',
+	name: 'JCheckbox',
 	props: {
 		value: {
-			type: [String, Number, Boolean],
+			type: [String, Number, Boolean, Array],
 			default: ''
 		},
 		label: {
 			type: [String, Number, Boolean],
+			default: ''
+		},
+		trueLabel: {
+			type: [String, Number],
+			default: ''
+		},
+		falseLabel: {
+			type: [String, Number],
 			default: ''
 		},
 		disabled: {
@@ -27,25 +35,44 @@ export default {
 		name: {
 			type: String,
 			default: undefined
+		},
+		checked: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data () {
 		return {
-			innerValue: '',
-			checked: ''
+			innerChecked: false
 		}
 	},
 	methods: {
-		handleChange () {
-			this.$emit('input', this.label)
-			this.$emit('change', this.label)
+		handleChange (e) {
+			console.log(e)
+			this.innerChecked = !this.innerChecked
+			let res
+			if (this.value instanceof Boolean) {
+				res = this.innerChecked
+			} else if (this.value instanceof Array) {
+				const label = this.label ? this.label : this.trueLabel
+				if (this.innerChecked) {
+					if (this.value.indexOf(label) === -1) this.value.push(label)
+					res = this.value
+				} else {
+					res = this.value.filter(item => item !== label)
+				}
+			} else {
+				res = this.label ? this.label : this.trueLabel
+			}
+			this.$emit('input', res)
+			this.$emit('change', res)
 		}
 	},
 	computed: {
 		classArray () {
 			const classArray = []
 
-			if (this.checked) {
+			if (this.innerChecked) {
 				classArray.push('is-checked')
 			}
 
@@ -57,10 +84,18 @@ export default {
 		}
 	},
 	watch: {
+		checked (newVal) {
+			this.innerChecked = newVal
+		},
 		value: {
-			handler () {
-				this.innerValue = this.value
-				this.checked = this.label && this.value === this.label
+			handler (newVal) {
+				if (newVal instanceof Boolean) {
+					this.innerChecked = this.checked || newVal
+				} else if (newVal instanceof Array) {
+					this.innerChecked = this.checked || (newVal.includes(this.label ? this.label : this.trueLabel))
+				} else {
+					this.innerChecked = this.checked || (newVal === (this.label ? this.label : this.trueLabel))
+				}
 			},
 			immediate: true
 		}
@@ -69,7 +104,7 @@ export default {
 </script>
 
 <style lang="scss">
-.j-radio {
+.j-checkbox {
 	font-size: 14px;
 	transition-duration: 0.2s;
 	cursor: pointer;
@@ -130,7 +165,7 @@ export default {
 	&.is-disabled {
 		cursor: not-allowed;
 
-		.j-radio-stone {
+		.j-checkbox-stone {
 			&-inner {
 				&:hover,
 				&:focus {
@@ -149,7 +184,7 @@ export default {
 
 	&.is-checked.is-disabled,
 	&.is-checked {
-		.j-radio-stone {
+		.j-checkbox-stone {
 			&-inner {
 				&::after {
 					width: 5px;
@@ -167,7 +202,7 @@ export default {
 	}
 
 	&.is-checked:not(.is-disabled) {
-		.j-radio-stone {
+		.j-checkbox-stone {
 			&-inner {
 
 				@include theme_bg_color('primary-active');

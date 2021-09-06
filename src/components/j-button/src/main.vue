@@ -5,7 +5,16 @@
 		:disabled="disabled"
 		@click="handleClick"
 	>
-		<span v-if="!icon && !round"><slot></slot></span>
+		<template v-if="icon">
+			<i :class="icon"></i>
+			<span v-if="!icon && !round"><slot></slot></span>
+		</template>
+		<template v-else-if="!round">
+			<span><slot></slot></span>
+		</template>
+		<template v-else>
+			<i :class="icon"></i>
+		</template>
 	</button>
 </template>
 
@@ -100,15 +109,18 @@ export default {
 	border-radius: 4px;
 	outline: none;
 	font-size: 14px;
+	line-height: 1;
 	transition-duration: 0.1s;
 	cursor: pointer;
+	-webkit-user-select: none;
+	user-select: none;
 
 	&.is-circle {
 		border-radius: 20px;
 	}
 
 	&.is-round {
-		padding: 14px;
+		padding: 8px;
 
 		@extend .is-circle;
 	}
@@ -116,28 +128,16 @@ export default {
 	&-mini {
 		padding: 5px 10px;
 		font-size: 12px;
-
-		&.is-round {
-			padding: 10px;
-		}
 	}
 
 	&-small {
 		padding: 6px 12px;
 		font-size: 12px;
-
-		&.is-round {
-			padding: 12px;
-		}
 	}
 
 	&-large {
 		padding: 8px 16px;
 		font-size: 16px;
-
-		&.is-round {
-			padding: 16px;
-		}
 	}
 
 	& + & {
