@@ -17,12 +17,12 @@
 		</j-raw>
 
 		<j-raw id="yuanxinganniu" name="圆形按钮" class="row">
-			<j-button round icon="j-icon-wodefankui" @click="handleClick"></j-button>
-			<j-button round icon="j-icon-zhengque" type="primary" @click="handleClick">主题按钮</j-button>
-			<j-button round icon="j-icon-zhengque" type="success" @click="handleClick">成功按钮</j-button>
-			<j-button round icon="j-icon-cuowu" type="warn" @click="handleClick">警告按钮</j-button>
-			<j-button round icon="j-icon-cuowu" type="danger" @click="handleClick">危险按钮</j-button>
-			<j-button round icon="j-icon-zhengque" type="info" @click="handleClick">信息按钮</j-button>
+			<j-button round icon="j-icon-setting-box" @click="handleClick"></j-button>
+			<j-button round icon="j-icon-check" type="primary" @click="handleClick">主题按钮</j-button>
+			<j-button round icon="j-icon-check" type="success" @click="handleClick">成功按钮</j-button>
+			<j-button round icon="j-icon-close" type="warn" @click="handleClick">警告按钮</j-button>
+			<j-button round icon="j-icon-close" type="danger" @click="handleClick">危险按钮</j-button>
+			<j-button round icon="j-icon-check" type="info" @click="handleClick">信息按钮</j-button>
 		</j-raw>
 
 		<j-raw id="yuanjiaoanniu" name="圆角按钮" class="row">
@@ -105,7 +105,7 @@
 		</j-raw>
 
 		<j-raw id="duoxuakuangzu" name="多选框组" class="row">
-			<j-checkbox-group v-model="checkbox.checkbox4" :max="2" :min="0">
+			<j-checkbox-group v-model="checkbox.checkbox4" disabled :max="2" :min="0">
 				<j-checkbox label="备选项1"></j-checkbox>
 				<j-checkbox label="备选项2"></j-checkbox>
 				<j-checkbox label="备选项3"></j-checkbox>
@@ -129,7 +129,7 @@ export default {
 				checkbox1: '备选项1',
 				checkbox2: ['备选项2', '备选项3'],
 				checkbox3: true,
-				checkbox4: []
+				checkbox4: ['备选项1', '备选项2']
 			}
 		}
 	},

@@ -16,17 +16,17 @@ export default {
 		const children = []
 		this.$slots.default.map(item => {
 			if (item.componentOptions.tag !== 'j-radio') return
-			const radioProps = {
-				label: item.componentOptions.propsData.label,
-				value: this.value,
-				disabled: this.disabled ? true : item.componentOptions.propsData.disabled
-			}
+			const radioProps = item.componentOptions.propsData
+
+			radioProps.value = this.value
 
 			const radioOn = {
 				change: (value) => {
 					this.$emit('input', value)
 				}
 			}
+
+			if (this.disabled === true) radioProps.disabled = true
 
 			const radioChildren = item.componentOptions.children
 

@@ -43,6 +43,8 @@ export default {
 				}
 			}
 
+			if (this.disabled === true) checkboxProps.disabled = true
+
 			const checkboxChildren = item.componentOptions.children
 
 			children.push(createElement(JCheckbox, { props: checkboxProps, attrs: checkboxProps, on: checkboxOn }, checkboxChildren))
