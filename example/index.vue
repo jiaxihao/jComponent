@@ -35,12 +35,12 @@
 		</j-raw>
 
 		<j-raw id="anniujinyongzhuangtai" name="按钮禁用状态" class="row">
-			<j-button disabled @click="handleClick">默认按钮</j-button>
-			<j-button disabled type="primary" @click="handleClick">主题按钮</j-button>
-			<j-button disabled type="success" @click="handleClick">成功按钮</j-button>
-			<j-button disabled type="warn" @click="handleClick">警告按钮</j-button>
-			<j-button disabled type="danger" @click="handleClick">危险按钮</j-button>
-			<j-button disabled type="info" @click="handleClick">信息按钮</j-button>
+			<j-button disabled @click="handleClick">默认禁用</j-button>
+			<j-button disabled type="primary" @click="handleClick">主题禁用</j-button>
+			<j-button disabled type="success" @click="handleClick">成功禁用</j-button>
+			<j-button disabled type="warn" @click="handleClick">警告禁用</j-button>
+			<j-button disabled type="danger" @click="handleClick">危险禁用</j-button>
+			<j-button disabled type="info" @click="handleClick">信息禁用</j-button>
 		</j-raw>
 
 		<j-raw id="anniuzu" name="按钮组" class="row">
@@ -55,7 +55,7 @@
 
 		<j-raw id="wenzianniu" name="文字按钮" class="row">
 			<j-button type="text" @click="handleClick">文字按钮</j-button>
-			<j-button disabled type="text" @click="handleClick">主题按钮</j-button>
+			<j-button disabled type="text" @click="handleClick">文字禁用</j-button>
 		</j-raw>
 
 		<j-raw id="wenzilianjie" name="文字链接" class="row">
@@ -75,27 +75,27 @@
 		</j-raw>
 
 		<j-raw id="danxuankuang" name="单选框" class="row">
-			<j-radio v-model="radio.radio1" label="1">备选项</j-radio>
-			<j-radio v-model="radio.radio1" label="2">备选项</j-radio>
+			<j-radio v-model="radio.radio1" label="1">备选项1</j-radio>
+			<j-radio v-model="radio.radio1" label="2">备选项2</j-radio>
 		</j-raw>
 
 		<j-raw id="danxuankuangzu" name="单选框组" class="row">
-			<j-radio v-model="radio.radio2" disabled label="1">备选项</j-radio>
-			<j-radio v-model="radio.radio2" label="2">备选项</j-radio>
-			<j-radio v-model="radio.radio2" label="3">备选项</j-radio>
+			<j-radio v-model="radio.radio2" disabled label="1">备选项1</j-radio>
+			<j-radio v-model="radio.radio2" label="2">备选项2</j-radio>
+			<j-radio v-model="radio.radio2" label="3">备选项3</j-radio>
 		</j-raw>
 
 		<j-raw id="duoxuankuangzifuchuan" name="多选框-字符串" class="row">
-			<j-checkbox v-model="checkbox.checkbox1" disabled true-label="备选项1">备选项1</j-checkbox>
-			<j-checkbox v-model="checkbox.checkbox1" true-label="备选项2">备选项2</j-checkbox>
-			<j-checkbox v-model="checkbox.checkbox1" true-label="备选项3">备选项3</j-checkbox>
+			<j-checkbox v-model="checkbox.checkbox1" disabled label="备选项1"></j-checkbox>
+			<j-checkbox v-model="checkbox.checkbox1" label="备选项2"></j-checkbox>
+			<j-checkbox v-model="checkbox.checkbox1" label="备选项3"></j-checkbox>
 			<div>{{ checkbox.checkbox1 }}</div>
 		</j-raw>
 
 		<j-raw id="duoxuankuangshuzu" name="多选框-数组" class="row">
-			<j-checkbox v-model="checkbox.checkbox2" true-label="备选项1">备选项1</j-checkbox>
-			<j-checkbox v-model="checkbox.checkbox2" true-label="备选项2">备选项2</j-checkbox>
-			<j-checkbox v-model="checkbox.checkbox2" true-label="备选项3">备选项3</j-checkbox>
+			<j-checkbox v-model="checkbox.checkbox2" label="备选项1"></j-checkbox>
+			<j-checkbox v-model="checkbox.checkbox2" label="备选项2"></j-checkbox>
+			<j-checkbox v-model="checkbox.checkbox2" label="备选项3"></j-checkbox>
 			<div>{{ checkbox.checkbox2 }}</div>
 		</j-raw>
 
@@ -105,7 +105,13 @@
 		</j-raw>
 
 		<j-raw id="duoxuakuangzu" name="多选框组" class="row">
-			<j-checkbox v-model="checkbox.checkbox3">备选项1</j-checkbox>
+			<j-checkbox-group v-model="checkbox.checkbox4" :max="2" :min="0">
+				<j-checkbox label="备选项1"></j-checkbox>
+				<j-checkbox label="备选项2"></j-checkbox>
+				<j-checkbox label="备选项3"></j-checkbox>
+				<j-checkbox label="备选项4"></j-checkbox>
+				<j-checkbox label="备选项5"></j-checkbox>
+			</j-checkbox-group>
 			<div>{{ checkbox.checkbox4 }}</div>
 		</j-raw>
 	</div>
@@ -123,7 +129,7 @@ export default {
 				checkbox1: '备选项1',
 				checkbox2: ['备选项2', '备选项3'],
 				checkbox3: true,
-				checkbox4: '123'
+				checkbox4: []
 			}
 		}
 	},

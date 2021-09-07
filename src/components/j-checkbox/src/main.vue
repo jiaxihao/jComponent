@@ -4,7 +4,7 @@
 			<span class="j-checkbox-stone-inner"></span>
 			<input type="checkbox" :name="name" :value="value" :checked="innerChecked" @change="handleChange" />
 		</span>
-		<span><slot></slot></span>
+		<span><slot></slot><span v-if="!this.$slots.default">{{ label }}</span></span>
 	</label>
 </template>
 
@@ -18,15 +18,15 @@ export default {
 		},
 		label: {
 			type: [String, Number, Boolean],
-			default: ''
+			default: undefined
 		},
 		trueLabel: {
-			type: [String, Number],
-			default: ''
+			type: [String, Number, Boolean],
+			default: true
 		},
 		falseLabel: {
-			type: [String, Number],
-			default: ''
+			type: [String, Number, Boolean],
+			default: false
 		},
 		disabled: {
 			type: Boolean,
@@ -46,6 +46,11 @@ export default {
 			innerChecked: false
 		}
 	},
+	mounted () {
+		this.$nextTick(() => {
+			if (this.checked === true) this.innerChecked = true
+		})
+	},
 	methods: {
 		handleChange () {
 			if (this.disabled) return
@@ -54,7 +59,7 @@ export default {
 			if (typeof this.value === 'boolean') {
 				res = this.innerChecked
 			} else if (this.value instanceof Array) {
-				const label = this.label ? this.label : this.trueLabel
+				const label = this.label !== undefined ? this.label : this.trueLabel
 				if (this.innerChecked) {
 					if (this.value.indexOf(label) === -1) this.value.push(label)
 					res = this.value
@@ -62,7 +67,7 @@ export default {
 					res = this.value.filter(item => item !== label)
 				}
 			} else {
-				res = this.label ? this.label : (this.innerChecked ? this.trueLabel : this.falseLabel)
+				res = this.label !== undefined ? this.label : (this.innerChecked ? this.trueLabel : this.falseLabel)
 			}
 			this.$emit('input', res)
 			this.$emit('change', res)
@@ -89,11 +94,12 @@ export default {
 				if (typeof newVal === 'boolean') {
 					this.innerChecked = this.checked || newVal
 				} else if (newVal instanceof Array) {
-					this.innerChecked = this.checked || (newVal.includes(this.label ? this.label : this.trueLabel))
+					this.innerChecked = this.checked || (newVal.includes(this.label !== undefined ? this.label : this.trueLabel))
 				} else {
-					this.innerChecked = this.checked || (newVal === (this.label ? this.label : this.trueLabel))
+					this.innerChecked = this.checked || (newVal === (this.label !== undefined ? this.label : this.trueLabel))
 				}
 			},
+			deep: true,
 			immediate: true
 		}
 	}

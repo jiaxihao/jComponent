@@ -44,6 +44,7 @@ export default {
 		margin-bottom: 10px;
 		font-size: 16px;
 		color: $title;
+		cursor: pointer;
 	}
 }
 </style>

@@ -4,7 +4,7 @@
 			<span class="j-radio-stone-inner"></span>
 			<input type="radio" :name="name" :disabled="disabled" :checked="checked" @change="handleChange" />
 		</span>
-		<span><slot></slot></span>
+		<span><slot></slot><span v-if="!this.$slots.default">{{ label }}</span></span>
 	</label>
 </template>
 

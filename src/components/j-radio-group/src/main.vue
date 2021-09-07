@@ -15,6 +15,7 @@ export default {
 	render (createElement) {
 		const children = []
 		this.$slots.default.map(item => {
+			if (item.componentOptions.tag !== 'j-radio') return
 			const radioProps = {
 				label: item.componentOptions.propsData.label,
 				value: this.value,

@@ -4,32 +4,48 @@ export default {
 	name: 'JCheckboxGroup',
 	props: {
 		value: {
-			type: [String, Number, Boolean],
+			type: [String, Number, Boolean, Array],
 			default: ''
 		},
 		disabled: { // overwrite children props
 			type: Boolean,
 			default: false
+		},
+		max: {
+			type: Number,
+			default: Infinity
+		},
+		min: {
+			type: Number,
+			default: 0
 		}
 	},
 	render (createElement) {
 		const children = []
 		this.$slots.default.map(item => {
-			const radioProps = {
-				label: item.componentOptions.propsData.label,
-				value: this.value,
-				disabled: this.disabled ? true : item.componentOptions.propsData.disabled
-			}
+			if (item.componentOptions.tag !== 'j-checkbox') return
+			const checkboxProps = item.componentOptions.propsData
+			checkboxProps.value = this.value
 
-			const radioOn = {
+			const checkboxOn = {
 				change: (value) => {
 					this.$emit('input', value)
+					this.$emit('change', value)
 				}
 			}
 
-			const radioChildren = item.componentOptions.children
+			if (!isNaN(this.max) && !isNaN(this.min) && Array.isArray(this.value)) {
+				if (this.value.length <= this.min) {
+					if (this.value.includes(checkboxProps.label)) checkboxProps.disabled = true
+				}
+				if (this.value.length >= this.max) {
+					if (!this.value.includes(checkboxProps.label)) checkboxProps.disabled = true
+				}
+			}
 
-			children.push(createElement(JCheckbox, { props: radioProps, attrs: radioProps, on: radioOn }, radioChildren))
+			const checkboxChildren = item.componentOptions.children
+
+			children.push(createElement(JCheckbox, { props: checkboxProps, attrs: checkboxProps, on: checkboxOn }, checkboxChildren))
 		})
 
 		return createElement(
