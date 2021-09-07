@@ -71,8 +71,11 @@ export default {
 <style lang="scss">
 .j-radio {
 	font-size: 14px;
+	color: $content;
 	transition-duration: 0.2s;
 	cursor: pointer;
+	-webkit-user-select: none;
+	user-select: none;
 
 	& + & {
 		margin-left: 10px;

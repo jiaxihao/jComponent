@@ -47,11 +47,11 @@ export default {
 		}
 	},
 	methods: {
-		handleChange (e) {
-			console.log(e)
+		handleChange () {
+			if (this.disabled) return
 			this.innerChecked = !this.innerChecked
 			let res
-			if (this.value instanceof Boolean) {
+			if (typeof this.value === 'boolean') {
 				res = this.innerChecked
 			} else if (this.value instanceof Array) {
 				const label = this.label ? this.label : this.trueLabel
@@ -62,7 +62,7 @@ export default {
 					res = this.value.filter(item => item !== label)
 				}
 			} else {
-				res = this.label ? this.label : this.trueLabel
+				res = this.label ? this.label : (this.innerChecked ? this.trueLabel : this.falseLabel)
 			}
 			this.$emit('input', res)
 			this.$emit('change', res)
@@ -84,12 +84,9 @@ export default {
 		}
 	},
 	watch: {
-		checked (newVal) {
-			this.innerChecked = newVal
-		},
 		value: {
 			handler (newVal) {
-				if (newVal instanceof Boolean) {
+				if (typeof newVal === 'boolean') {
 					this.innerChecked = this.checked || newVal
 				} else if (newVal instanceof Array) {
 					this.innerChecked = this.checked || (newVal.includes(this.label ? this.label : this.trueLabel))
@@ -106,8 +103,11 @@ export default {
 <style lang="scss">
 .j-checkbox {
 	font-size: 14px;
+	color: $content;
 	transition-duration: 0.2s;
 	cursor: pointer;
+	-webkit-user-select: none;
+	user-select: none;
 
 	& + & {
 		margin-left: 10px;
@@ -124,7 +124,7 @@ export default {
 			width: 14px;
 			height: 14px;
 			border: 1px solid;
-			border-radius: 50%;
+			border-radius: 3px;
 			transform: translateY(2.5px);
 
 			&:hover,
@@ -135,17 +135,19 @@ export default {
 
 			&::after {
 				position: absolute;
-				top: 50%;
-				left: 50%;
-				width: 0;
-				height: 0;
-				border-radius: 4px;
-				transform: translate(-50%, -50%) scale(0);
+				top: 1px;
+				left: 4px;
+				width: 4px;
+				height: 8px;
+				border: 2px solid;
+				border-top: 0;
+				border-left: 0;
+				transform: rotate(45deg) scaleY(0);
 				transform-origin: center;
 				transition: transform 0.15s ease-in;
 				content: '';
 
-				@include theme_bg_color('simple');
+				@include theme_brd_color('simple');
 			}
 
 			@include theme_brd_color('info');
@@ -161,57 +163,67 @@ export default {
 			opacity: 0;
 		}
 	}
+}
 
-	&.is-disabled {
-		cursor: not-allowed;
+.j-checkbox.is-disabled {
+	cursor: not-allowed;
 
-		.j-checkbox-stone {
-			&-inner {
-				&:hover,
-				&:focus {
-
-					@include theme_brd_color('info-disabled');
-				}
+	.j-checkbox-stone {
+		&-inner {
+			&:hover,
+			&:focus {
 
 				@include theme_brd_color('info-disabled');
 			}
+
+			@include theme_brd_color('info-disabled');
 		}
-
-		@include theme_brd_color('info-disabled');
-
-		@include theme_color('info-disabled');
 	}
 
-	&.is-checked.is-disabled,
-	&.is-checked {
-		.j-checkbox-stone {
-			&-inner {
-				&::after {
-					width: 5px;
-					height: 5px;
-					transform: translate(-50%, -50%) scale(1);
-				}
+	@include theme_brd_color('info-disabled');
 
-				@include theme_bg_color('primary-disabled');
+	@include theme_color('info-disabled');
+}
 
-				@include theme_brd_color('primary-disabled');
+.j-checkbox.is-checked {
+	.j-checkbox-stone {
+		&-inner {
+			&::after {
+				transform: rotate(45deg) scaleY(1);
 			}
-		}
 
-		@include theme_color('info-disabled');
+			@include theme_bg_color('primary-active');
+
+			@include theme_brd_color('primary-active');
+		}
 	}
 
-	&.is-checked:not(.is-disabled) {
-		.j-checkbox-stone {
-			&-inner {
+	@include theme_color('primary');
+}
 
-				@include theme_bg_color('primary-active');
+.j-checkbox.is-checked:not(.is-disabled) {
+	.j-checkbox-stone {
+		&-inner {
 
-				@include theme_brd_color('primary-active');
-			}
+			@include theme_bg_color('primary-active');
+
+			@include theme_brd_color('primary-active');
 		}
-
-		@include theme_color('primary');
 	}
+
+	@include theme_color('primary');
+}
+
+.j-checkbox.is-checked.is-disabled {
+	.j-checkbox-stone {
+		&-inner {
+
+			@include theme_bg_color('primary-disabled');
+
+			@include theme_brd_color('primary-disabled');
+		}
+	}
+
+	@include theme_color('info-disabled');
 }
 </style>
