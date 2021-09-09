@@ -114,6 +114,35 @@
 			</j-checkbox-group>
 			<div>{{ checkbox.checkbox4 }}</div>
 		</j-raw>
+
+		<j-raw id="shurukuang" name="输入框" class="row">
+			<j-input v-model="input.input1"></j-input>
+		</j-raw>
+
+		<j-raw id="shurukuangjinyongzhuangtai" name="输入框禁用状态" class="row">
+			<j-input v-model="input.input1" disabled></j-input>
+		</j-raw>
+
+		<j-raw id="shurukuangkeqingkong" name="输入框可清空" class="row">
+			<j-input v-model="input.input1" clearable></j-input>
+		</j-raw>
+
+		<j-raw id="shurukuangkeqingkong" name="输入框可清空" class="row">
+			<j-input v-model="input.input1" show-password></j-input>
+		</j-raw>
+
+		<j-raw id="shurukuangicon" name="输入框icon" class="row">
+			<j-input v-model="input.input1" prefix-icon="j-icon-safe"></j-input>
+			<j-input v-model="input.input1" suffix-icon="j-icon-search"></j-input>
+			<br />
+			<br />
+			<j-input v-model="input.input1">
+				<i slot="prefix" class="j-icon-safe j-input-prefix"></i>
+			</j-input>
+			<j-input v-model="input.input1">
+				<i slot="suffix" class="j-icon-search j-input-suffix"></i>
+			</j-input>
+		</j-raw>
 	</div>
 </template>
 
@@ -130,6 +159,9 @@ export default {
 				checkbox2: ['备选项2', '备选项3'],
 				checkbox3: true,
 				checkbox4: ['备选项1', '备选项2']
+			},
+			input: {
+				input1: ''
 			}
 		}
 	},
@@ -153,6 +185,12 @@ export default {
 				console.log(newVal)
 			},
 			deep: true
+		},
+		input: {
+			handler (newVal) {
+				console.log(newVal)
+			},
+			deep: true
 		}
 	}
 }
@@ -164,6 +202,10 @@ export default {
 
 	&:last-child {
 		margin-bottom: 20vh;
+	}
+
+	.j-input {
+		width: 180px;
 	}
 }
 </style>

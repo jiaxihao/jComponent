@@ -8,6 +8,7 @@ import JRadio from './components/j-radio'
 import JRadioGroup from './components/j-radio-group'
 import JCheckbox from './components/j-checkbox'
 import JCheckboxGroup from './components/j-checkbox-group'
+import JInput from './components/j-input'
 
 import './iconfont/iconfont.css'
 
@@ -21,7 +22,8 @@ const components = [
 	JRadio,
 	JRadioGroup,
 	JCheckbox,
-	JCheckboxGroup
+	JCheckboxGroup,
+	JInput
 ]
 
 const install = function (Vue) {

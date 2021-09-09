@@ -23,6 +23,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.j-icon-eye:before {
+  content: "\e8bf";
+}
+
 .j-icon-play:before {
   content: "\e60c";
 }
